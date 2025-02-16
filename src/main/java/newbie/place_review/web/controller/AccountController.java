@@ -86,9 +86,4 @@ public class AccountController {
 
         return "redirect:/sign-in";
     }
-
-    @GetMapping("/sign-up/options")
-    public String initSignUpOptions() {
-        return "pages/account/sign-up-options";
-    }
 }
