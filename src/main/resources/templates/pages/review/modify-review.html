@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>리뷰 수정</title>
+  </head>
+  <body>
+    <header th:replace="~{fragments/global-header::globalHeader}"></header>
+    <h1>Modify Review</h1>
+
+    <main>
+      <article>
+        <form>
+          <p>장소이름</p>
+          <p>작성자</p>
+          <div>
+<!--            별점기능 미구현-->
+            <span>
+              <input type="radio" name="rating" />
+              <input type="radio" name="rating" />
+              <input type="radio" name="rating" />
+              <input type="radio" name="rating" />
+              <input type="radio" name="rating" />
+            </span>
+<!--            /별점기능 미구현-->
+            <span>
+              <input
+                type="password"
+                id="password"
+                placeholder="비밀번호"
+                required />
+              <label for="password"></label>
+            </span>
+          </div>
+          <textarea id="textarea" required></textarea>
+          <label for="textarea"></label>
+          <div><a href="#">이미지추가</a></div>
+          <div>
+            <a href="#">취소</a>
+            <button type="submit">등록</button>
+          </div>
+        </form>
+      </article>
+    </main>
+    <footer th:replace="~{fragments/global-footer::globalFooter}"></footer>
+  </body>
+</html>

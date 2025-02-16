@@ -3,6 +3,7 @@ package newbie.place_review.api;
 import lombok.Getter;
 import lombok.NonNull;
 import org.springframework.http.HttpStatus;
+import org.springframework.util.Assert;
 
 @Getter
 public class ApiResponse<T> {
@@ -13,19 +14,21 @@ public class ApiResponse<T> {
 
     private final T data;
 
-    public ApiResponse(String message, HttpStatus httpStatus, @NonNull T data) {
+    private ApiResponse(String message, HttpStatus httpStatus, T data) {
         this.httpStatus = httpStatus;
         this.message = message;
         this.data = data;
     }
 
-    public ApiResponse(String message, HttpStatus httpStatus) {
+    private ApiResponse(String message, HttpStatus httpStatus) {
         this.message = message;
         this.httpStatus = httpStatus;
         this.data = null;
     }
 
-    public static <U> ApiResponse<U> of(String message, HttpStatus httpStatus, U data) {
+    public static <T> ApiResponse<T> of(String message, HttpStatus httpStatus, T data) {
+        Assert.notNull(data, "The data argument cannot be null");
+
         return new ApiResponse<>(message, httpStatus, data);
     }
 

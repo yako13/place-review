@@ -10,6 +10,7 @@ import newbie.place_review.module.review.Review;
 import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import java.util.Optional;
 
@@ -22,7 +23,11 @@ public class CommentModuleImpl implements CommentModule {
     private final CommentRepository commentRepository;
 
     @Override
-    public Comments saveByNonmember(@NonNull Review review, @NonNull String content, @NonNull String password) {
+    public Comments saveByNonmember(Review review, String content, String password) {
+        Assert.notNull(review, "Review cannot be null");
+        Assert.notNull(content, "Content cannot be null");
+        Assert.notNull(password, "Password cannot be null");
+
         Comments comment = Comments.builder()
                                    .review(review)
                                    .content(content)
@@ -34,12 +39,17 @@ public class CommentModuleImpl implements CommentModule {
 
 
     @Override
-    public Optional<Comments> getById(@NonNull Long commentId) {
+    public Optional<Comments> getById(Long commentId) {
+        Assert.notNull(commentId, "CommentId cannot be null");
+
         return commentRepository.findById(commentId);
     }
 
     @Override
-    public void deleteByNonmember(@NonNull Long commentId, @NonNull String password) {
+    public void deleteByNonmember(Long commentId, String password) {
+        Assert.notNull(commentId, "CommentId cannot be null");
+        Assert.notNull(password, "Password cannot be null");
+
         getById(commentId).ifPresentOrElse(
                 comments -> {
                     if (comments.getPassword().equals(password))

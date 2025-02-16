@@ -9,6 +9,7 @@ import newbie.place_review.module.place.PlaceRepository;
 import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import java.util.Optional;
 
@@ -21,11 +22,15 @@ public class PlaceModuleImpl implements PlaceModule {
 
     @Override
     public Place save(
-            @NonNull String address,
-            @NonNull String placeName,
-            @NonNull Double latitude,
-            @NonNull Double longitude
+            String address,
+            String placeName,
+            Double latitude,
+            Double longitude
     ) {
+        Assert.notNull(address, "Address cannot be null");
+        Assert.notNull(placeName, "PlaceName cannot be null");
+        Assert.notNull(latitude, "Latitude cannot be null");
+        Assert.notNull(longitude, "Longitude cannot be null");
 
         Coordinates coordinates = Coordinates.builder()
                                              .longitude(longitude)
@@ -44,11 +49,15 @@ public class PlaceModuleImpl implements PlaceModule {
 
     @Override
     public Optional<Place> getById(Long placeId) {
+        Assert.notNull(placeId, "PlaceId cannot be null");
+
         return placeRepository.findById(placeId);
     }
 
     @Override
     public void deleteById(Long placeId) {
+        Assert.notNull(placeId, "PlaceId cannot be null");
+
         placeRepository.findById(placeId).ifPresentOrElse(
                 placeRepository::delete,
                 () -> {
@@ -59,14 +68,19 @@ public class PlaceModuleImpl implements PlaceModule {
 
     @Override
     public Place update(
-            @NonNull Long placeId,
-            @NonNull String address,
-            @NonNull String placeName,
-            @NonNull Double latitude,
-            @NonNull Double longitude
+            Long placeId,
+            String address,
+            String placeName,
+            Double latitude,
+            Double longitude
     ) {
+        Assert.notNull(placeId, "PlaceId cannot be null");
+        Assert.notNull(address, "Address cannot be null");
+        Assert.notNull(placeId, "PlaceName cannot be null");
+        Assert.notNull(latitude, "Latitude cannot be null");
+        Assert.notNull(longitude, "Longitude cannot be null");
 
-        return placeRepository.findById(placeId).map(place -> {
+        Place foundPlace = placeRepository.findById(placeId).map(place -> {
 
             Coordinates coordinates = Coordinates.builder()
                                                  .latitude(latitude)
@@ -80,5 +94,7 @@ public class PlaceModuleImpl implements PlaceModule {
 
             return place;
         }).orElseThrow(() -> new DataRetrievalFailureException("수정 할 장소를 찾지 못하였습니다."));
+
+        return foundPlace;
     }
 }

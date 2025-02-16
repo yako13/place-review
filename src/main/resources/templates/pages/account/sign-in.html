@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Place Review - Sign In</title>
+</head>
+<body>
+<header th:replace="~{fragments/global-header::globalHeader}"></header>
+<main>
+    <form th:action="@{/sign-in}" th:method="post">
+        <h2>로그인</h2>
+        <div>
+            <label for="email">이메일</label>
+            <input type="email" name="email" id="email">
+        </div>
+        <div>
+            <label for="password">비밀번호</label>
+            <input type="password" name="password" id="password">
+        </div>
+        <div>
+            <p><a th:href="@{/find/password}">비밀번호 찾기</a></p>
+            <p>아직 회원이 아니시라면? <a th:href="@{/sign-up/options}">회원가입</a></p>
+        </div>
+        <div>
+            <button type="submit">로그인</button>
+        </div>
+    </form>
+    <hr>
+    <div>
+        <h3>소셜 로그인</h3>
+        <ul>
+            <li>
+                <a href="/oauth2/authorization/google">구글 로그인</a>
+            </li>
+        </ul>
+    </div>
+</main>
+<footer th:replace="~{fragments/global-footer::globalFooter}"></footer>
+</body>
+</html>

@@ -9,6 +9,7 @@ import newbie.place_review.module.review.ReviewRepository;
 import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import java.util.Optional;
 
@@ -22,11 +23,15 @@ public class ReviewModuleImpl implements ReviewModule {
 
     @Override
     public Review saveByNonmember(
-            @NonNull Place place,
-            @NonNull String content,
-            @NonNull Integer rate,
-            @NonNull String password
+            Place place,
+            String content,
+            Integer rate,
+            String password
     ) {
+        Assert.notNull(place, "Place cannot be null");
+        Assert.notNull(content, "Content cannot be null");
+        Assert.notNull(rate, "Rate cannot be null");
+        Assert.notNull(password, "Password cannot be null");
 
         Review review = Review.builder()
                               .place(place)
@@ -39,7 +44,9 @@ public class ReviewModuleImpl implements ReviewModule {
     }
 
     @Override
-    public Optional<Review> getById(@NonNull Long reviewId) {
+    public Optional<Review> getById(Long reviewId) {
+        Assert.notNull(reviewId, "ReviewId cannot be nulls");
+
         return reviewRepository.findById(reviewId);
     }
 
@@ -50,16 +57,22 @@ public class ReviewModuleImpl implements ReviewModule {
      * @param content         새로운 내용
      * @param rate            새로운 평점
      * @param newPassword     새로운 비밀번호
-     * @throws SecurityException 리뷰 비밀번호가 일치하지 않을 때
+     * @throws SecurityException             리뷰 비밀번호가 일치하지 않을 때
      * @throws DataRetrievalFailureException 수정 할 리뷰를 찾지 못 했을 때
      */
     @Override
     public Review updateByNonmember(
-            @NonNull Long reviewId,
-            @NonNull String currentPassword,
-            @NonNull String content,
-            @NonNull Integer rate,
-            @NonNull String newPassword) throws SecurityException, DataRetrievalFailureException {
+            Long reviewId,
+            String currentPassword,
+            String content,
+            Integer rate,
+            String newPassword
+    ) throws SecurityException, DataRetrievalFailureException {
+        Assert.notNull(reviewId, "ReviewId cannot be null");
+        Assert.notNull(currentPassword, "CurrentPassword cannot be null");
+        Assert.notNull(content, "Content cannot be null");
+        Assert.notNull(rate, "Rate cannot be null");
+        Assert.notNull(newPassword, "NewPassword cannot be null");
 
         return getById(reviewId)
                 .map(review -> {
@@ -84,8 +97,12 @@ public class ReviewModuleImpl implements ReviewModule {
      */
     @Override
     public void deleteByNonmember(
-            @NonNull Long reviewId,
-            @NonNull String password) throws SecurityException, DataRetrievalFailureException {
+            Long reviewId,
+            String password
+    ) throws SecurityException, DataRetrievalFailureException {
+        Assert.notNull(reviewId, "ReviewId cannot be null");
+        Assert.notNull(password, "Password cannot be null");
+
         getById(reviewId).ifPresentOrElse(review -> {
             if (review.getPassword().equals(password))
                 reviewRepository.delete(review);
@@ -102,7 +119,7 @@ public class ReviewModuleImpl implements ReviewModule {
      * @param rate 평점
      * @return 제한된 범위의 평점
      */
-    private Integer limitRate(@NonNull Integer rate) {
+    private Integer limitRate(Integer rate) {
         if (rate > 5)
             return 5;
         else if (rate < 1)

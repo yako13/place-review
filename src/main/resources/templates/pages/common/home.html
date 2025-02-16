@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Place Review - Home</title>
+</head>
+<body>
+<header th:replace="~{/fragments/global-header::globalHeader}"></header>
+<hr>
+<main>
+    <div>
+        <form action="#">
+            <input type="text" name="" id="" placeholder="내용">
+            <button type="submit">검색</button>
+        </form>
+    </div>
+    <article>
+        <ul>
+            <li>
+                <div>
+                    <h3>춘식이네 삼겹살</h3>
+                    <p>별점: 5점</p>
+                    <p><b>김춘식</b> <span>2025년 2월 12일</span></p>
+                    <img src="https://i.namu.wiki/i/oFHlYDjoEh8f-cc3lNK9jAemRkbXxNGwUg7XiW5LGS6DF1P2x8GCeNQxbQhVIwtUS1u53YPw-uoyqpmLtrGNJA.webp"
+                         alt="리뷰사진">
+                    <p>
+                        리뷰 내용
+                    </p>
+                    <p><a href="#">상세 리뷰 보러가기</a></p>
+                </div>
+            </li>
+        </ul>
+
+    </article>
+    <hr>
+    <article>
+        <h2>Place Review - 솔직한 리뷰, 실시간 소통!</h2>
+        <div>
+            <p>좋은 장소를 찾을 때, 가장 중요한 건 <strong>진짜 경험을 담은 리뷰</strong>입니다!</p>
+            <p>PLACE REVIEW는 사용자들이 직접 방문한 장소의 솔직한 리뷰를 공유하고, 생생한 정보를 나눌 수 있는 플랫폼입니다.</p>
+            <p>뿐만 아니라, <strong>라이브 챗 기능</strong>을 통해 다른 사용자들과 실시간으로 소통하며 궁금한 점을 빠르게 해결할 수 있어요.</p>
+            <p>어떤 카페 분위기가 좋은지, 맛집은 어디가 핫한지, 숙소는 어떤지 궁금하다면? 지금 바로 리뷰를 확인하고 대화를 나눠보세요!</p>
+            <p><strong>PLACE REVIEW에서 당신의 경험을 공유하고, 새로운 경험을 발견하세요!</strong></p>
+        </div>
+    </article>
+</main>
+<hr>
+<footer th:replace="~{fragments/global-footer::globalFooter}">
+</footer>
+</body>
+</html>

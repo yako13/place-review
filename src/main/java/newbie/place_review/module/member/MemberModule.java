@@ -7,7 +7,10 @@ public interface MemberModule {
 
     public Optional<Member> getById(Long memberId);
 
+    public Optional<Member> getByEmail(String email);
+
     public void deleteById(Long memberId);
 
-    public Member update(Long memberId, String email, String nickname, String password);
+    public Member update(Long memberId, String nickname, String email, String password);
+
 }

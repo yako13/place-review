@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Place Review - 라이브 챗</title>
+</head>
+<body>
+<header th:replace="~{fragments/global-header::globalHeader}"></header>
+<main>
+    <section>
+        <h2>라이브 챗</h2>
+        <p>다른 사용자들과 실시간으로 소통하며 궁금한 점을 해결해보세요!</p>
+    </section>
+    <section>
+        <div>
+            <div>
+                <time>2025년 2월 11일</time>
+            </div>
+            <div>
+                <p>닉네임</p>
+                <p>내용</p>
+                <span>오전 10:18</span>
+            </div>
+            <div>
+                <p>김춘식</p>
+                <p>내용</p>
+                <span>오전 10:19</span>
+            </div>
+            <div>
+                <form action="/live-chat" method="post">
+                    <div>
+                    <input type="text" id="content" placeholder="메세지 입력" required>
+                    </div>
+                    <div>
+                        <button type="submit">전송</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+<footer th:replace="~{fragments/global-footer::globalFooter}"></footer>
+</body>
+</html>
