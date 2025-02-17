@@ -33,9 +33,11 @@ public class MemberAccountApi {
         return ApiResponse.of("회원가입 성공", HttpStatus.CREATED);
     }
 
-    public ApiResponse<Void> modifyAccount(Long memberId, String nickname, String email, String password) {
+    public ApiResponse<Void> modifyAccount(String nickname, String email, String password) {
 
-        return memberModule.getById(memberId)
+        String originEmail = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        return memberModule.getByEmail(originEmail)
                            .map(member -> {
 
                                if (!member.getEmail().equals(email) && isVerifiedEmail(email)) {

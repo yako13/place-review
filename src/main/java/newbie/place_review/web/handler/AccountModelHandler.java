@@ -14,7 +14,6 @@ public class AccountModelHandler {
         if (apiResponse.getHttpStatus().is2xxSuccessful()) {
             MemberDto memberDto = apiResponse.getData();
 
-            model.addAttribute("memberId", memberDto.getMemberId());
             model.addAttribute("email", memberDto.getEmail());
             model.addAttribute("nickname", memberDto.getNickname());
         } else if (apiResponse.getHttpStatus().isError()) {

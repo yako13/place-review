@@ -14,7 +14,7 @@
             <a th:href="@{/sign-in}">로그인</a>
         </li>
         <li sec:authorize="isAnonymous()">
-            <a th:href="@{/sign-up/options}">회원가입</a>
+            <a th:href="@{/sign-up}">회원가입</a>
         </li>
         <li sec:authorize="isAuthenticated()">
             <a th:href="@{/my-account}">나의 계정</a>

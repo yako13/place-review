@@ -9,8 +9,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ModifyMemberDto {
 
-    private Long memberId;
-
     private String email;
 
     private String nickname;

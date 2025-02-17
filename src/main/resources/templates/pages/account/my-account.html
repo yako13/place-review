@@ -12,7 +12,6 @@
 <main>
     <form th:action="@{/my-account}" th:method="post">
         <h2>정보수정</h2>
-        <input th:value="${memberId}" type="text" name="memberId" hidden="hidden" />
         <div>
             <label for="nickname">닉네임</label>
             <input th:value="${nickname}" type="text" name="nickname" id="nickname" placeholder="닉네임"/>

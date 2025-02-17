@@ -43,12 +43,11 @@ public class AccountController {
     @PostMapping("/my-account")
     public String processMyAccount(ModifyMemberDto modifyMemberDto, RedirectAttributes redirectAttributes) {
 
-        Long memberId = modifyMemberDto.getMemberId();
         String nickname = modifyMemberDto.getNickname();
         String email = modifyMemberDto.getEmail();
         String password = modifyMemberDto.getPassword();
 
-        ApiResponse<Void> apiResponse = memberAccountApi.modifyAccount(memberId, nickname, email, password);
+        ApiResponse<Void> apiResponse = memberAccountApi.modifyAccount(nickname, email, password);
 
         if (apiResponse.getHttpStatus().isError()) {
             accountModelHandler.handleMyAccountView(apiResponse, redirectAttributes);
