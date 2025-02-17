@@ -1,0 +1,66 @@
+@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+
+.global-header {
+    /* Display Settings */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    flex-wrap: nowrap;
+
+    /* Header Default Font */
+    font-family: 'NanumSquare', serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+
+    /* Font color */
+    color: var(--dark);
+
+    /* Border */
+    border-bottom: 1px solid var(--grey-2);
+
+    /* Box */
+    padding: 1rem;
+
+    /* Text Setting */
+    text-wrap: nowrap;
+}
+
+
+.global-header__logo {
+    font-size: 1.5rem;
+
+}
+
+.global-header__logo a {
+    text-decoration: none;
+    color: var(--dark);
+}
+
+.global-header__logo a:hover {
+    color: var(--grey-3);
+}
+
+
+.global-header__account {
+
+}
+
+.global-header__account a {
+    /* a 태그 기본 설정 제거 */
+    text-decoration: none;
+    color: var(--dark);
+}
+
+.global-header__account a:hover {
+    color: var(--grey-3);
+}
+
+.account__item {
+
+}
+
+.account__item > span {
+    margin: 0 0.2rem;
+}

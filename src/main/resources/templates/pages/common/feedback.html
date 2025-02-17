@@ -1,23 +1,19 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Place Review - Feedback</title>
+    <th:block th:replace="fragments/blocks/global-head-block::global-head-block"></th:block>
+    <title>피드백</title>
 </head>
 
 <body>
 
-    <header th:replace="~{fragments/global-header::globalHeader}"></header>
-    <main>
-        <section>
-            <p>메세지</p>
-        </section>
-    </main>
-    <footer th:replace="~{fragments/global-footer::globalFooter}"></footer>
+<header th:replace="~{fragments/global-header::globalHeader}"></header>
+<main>
+    <section>
+        <p>메세지</p>
+    </section>
+</main>
+<footer th:replace="~{fragments/global-footer::globalFooter}"></footer>
 </body>
 
 </html>

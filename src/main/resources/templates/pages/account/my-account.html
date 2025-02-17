@@ -1,15 +1,15 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Place Review - My Account</title>
+    <th:block th:replace="fragments/blocks/global-head-block::global-head-block"></th:block>
+    <title>나의 계정</title>
 </head>
 <body>
 <header th:replace="~{fragments/global-header::globalHeader}"></header>
 <main>
+    <form th:action="@{/sign-out}" th:method="post">
+        <button type="submit">로그아웃</button>
+    </form>
     <form th:action="@{/my-account}" th:method="post">
         <h2>정보수정</h2>
         <div>

@@ -7,24 +7,18 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<header th:fragment="globalHeader">
-    <h1><a th:href="@{/}">Place Review</a></h1>
-    <ul>
-        <li sec:authorize="isAnonymous()">
-            <a th:href="@{/sign-in}">로그인</a>
-        </li>
-        <li sec:authorize="isAnonymous()">
-            <a th:href="@{/sign-up}">회원가입</a>
-        </li>
-        <li sec:authorize="isAuthenticated()">
-            <a th:href="@{/my-account}">나의 계정</a>
-        </li>
-        <li sec:authorize="isAuthenticated()">
-            <form th:action="@{/sign-out}" method="post">
-                <button type="submit">로그아웃</button>
-            </form>
-        </li>
-    </ul>
-    <hr>
+<header th:fragment="globalHeader" class="global-header">
+    <div class="global-header__logo">
+        <a th:href="@{/}"><span>Place Review</span></a>
+    </div>
+    <div class="global-header__account">
+        <div sec:authorize="isAnonymous()" class="account__item">
+            <span><a th:href="@{/sign-in}">로그인</a></span>
+            <span><a th:href="@{/sign-up}">회원가입</a></span>
+        </div>
+        <div sec:authorize="isAuthenticated()" class="account__item">
+            <span><a th:href="@{/my-account}">나의 계정</a></span>
+        </div>
+    </div>
 </header>
 </html>
