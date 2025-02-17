@@ -5,11 +5,15 @@
     <title>Title</title>
 </head>
 <body>
-<footer th:fragment="globalFooter">
-    <hr>
-    <p>Team: Newbie | <a th:href="@{https://github.com/oneachoice}">@oneachoice</a> <a
-            th:href="@{https://github.com/Ranme95}">@Ranme95</a> <a th:href="@{https://github.com/yako13}">@yako13</a>
-    </p>
+<footer th:fragment="globalFooter" class="global-footer">
+    <div class="global-footer__organization">
+        <p class="organization__description">
+            <b>Newbies</b> |
+            <span><a th:href="@{https://github.com/oneachoice}">@oneachoice</a></span>
+            <span><a th:href="@{https://github.com/Ranme95}">@Ranme95</a></span>
+            <span><a th:href="@{https://github.com/yako13}">@yako13</a></span>
+        </p>
+    </div>
 </footer>
 </body>
 </html>

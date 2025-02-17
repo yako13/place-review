@@ -1,0 +1,40 @@
+.global-footer {
+    /*  Font  */
+    font-family: var(--primary-font), serif;
+    font-style: normal;
+
+    /*  Font Color  */
+    color: var(--dark);
+
+    /*  Border  */
+    border-top: 1px solid var(--grey-3);
+
+    /*  Box  */
+    padding: 2rem;
+}
+
+.global-footer__organization {
+}
+
+.organization__description {
+    text-align: right;
+}
+
+.organization__description a {
+    text-decoration: none;
+    color: var(--dark);
+}
+
+.organization__description a:hover {
+    color: var(--grey-3);
+}
+
+/* 팀 이름 */
+.organization__description b {
+    font-weight: 600;
+}
+
+/* 참여자 이름 */
+.organization__description span {
+    margin: 0 0.2rem;
+}

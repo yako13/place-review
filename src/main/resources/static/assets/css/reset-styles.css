@@ -48,6 +48,11 @@ table {
     border-spacing: 0;
 }
 
+html, body {
+    height: 100%;
+    min-height: 100%;
+}
+
 ::selection {
     color: white;
     background-color: #ff3b00;

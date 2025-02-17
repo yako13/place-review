@@ -1,5 +1,7 @@
+@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+
 :root {
-    /* Colors */
+    /*  Colors  */
     --dark: #212121;
 
     --grey: #b6b6b6;
@@ -8,4 +10,7 @@
     --grey-4: #313131;
 
     --white: #F3F3F3;
+
+    /*  Fonts  */
+    --primary-font: 'NanumSquare';
 }
