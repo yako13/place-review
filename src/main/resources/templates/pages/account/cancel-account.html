@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Place Review - 계정삭제</title>
+</head>
+<body>
+<header th:replace="~{fragments/global-header::globalHeader}"></header>
+<main>
+    <form th:action="@{/my-account/cancel}" th:method="delete">
+        <div>
+            <p>정말로 계정을 삭제하시겠습니까?</p>
+        </div>
+        <div>
+            <a th:href="@{/my-account}">돌아가기</a>
+            <button type="submit">삭제</button>
+        </div>
+    </form>
+</main>
+<footer th:replace="~{fragments/global-footer::globalFooter}"></footer>
+</body>
+</html>

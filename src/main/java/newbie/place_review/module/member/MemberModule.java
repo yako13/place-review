@@ -11,6 +11,8 @@ public interface MemberModule {
 
     public void deleteById(Long memberId);
 
+    public void deleteByEmail(String memberEmail);
+
     public Member update(Long memberId, String nickname, String email, String password);
 
 }

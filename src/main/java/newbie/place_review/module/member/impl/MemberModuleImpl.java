@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import javax.swing.text.html.Option;
 import java.util.Optional;
 
 @Service
@@ -37,12 +38,22 @@ public class MemberModuleImpl implements MemberModule {
     public void deleteById(Long memberId) {
         Assert.notNull(memberId, "MemberId cannot be null");
 
-        Optional<Member> optMember = memberRepository.findById(memberId);
+        memberRepository.findById(memberId)
+                        .ifPresentOrElse(memberRepository::delete,
+                                () -> {
+                                    throw new DataRetrievalFailureException("삭제할 회원을 찾을 수 없습니다.");
+                                });
+    }
 
-        optMember.ifPresentOrElse(memberRepository::delete,
-                () -> {
-                    throw new DataRetrievalFailureException("삭제할 회원을 찾을 수 없습니다.");
-                });
+    @Override
+    public void deleteByEmail(String memberEmail) {
+        Assert.notNull(memberEmail, "MemberEmail cannot be null");
+
+        memberRepository.findByEmail(memberEmail)
+                        .ifPresentOrElse(memberRepository::delete,
+                                () -> {
+                                    throw new DataRetrievalFailureException("삭제할 회원을 찾을 수 없습니다.");
+                                });
     }
 
     @Override

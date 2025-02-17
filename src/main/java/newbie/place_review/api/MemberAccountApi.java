@@ -4,7 +4,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import newbie.place_review.cache.CacheManager;
 import newbie.place_review.dto.MemberDto;
-import newbie.place_review.dto.SignUpDto;
+import newbie.place_review.module.member.MemberModule;
 import newbie.place_review.module.member.impl.MemberModuleImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,7 +18,7 @@ public class MemberAccountApi {
 
     private final PasswordEncoder passwordEncoder;
 
-    private final MemberModuleImpl memberModule;
+    private final MemberModule memberModule;
 
     private final CacheManager cacheManager;
 
@@ -60,7 +60,7 @@ public class MemberAccountApi {
 
     public ApiResponse<? extends MemberDto> getCurrentMember() {
 
-        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        String email = getCurrentMemberEmail();
 
         return memberModule.getByEmail(email)
                            .map(member -> {
@@ -75,7 +75,20 @@ public class MemberAccountApi {
                            .orElseGet(() -> ApiResponse.of("회원 정보를 불러올 수 없습니다.", HttpStatus.NOT_FOUND, new MemberDto()));
     }
 
+    public ApiResponse<Void> cancelAccount() {
+
+        String email = getCurrentMemberEmail();
+
+        memberModule.deleteByEmail(email);
+
+        return ApiResponse.of("계정을 성공적으로 삭제하였습니다.", HttpStatus.NO_CONTENT);
+    }
+
     private boolean isVerifiedEmail(String email) {
         return cacheManager.get("!" + email) != null;
+    }
+
+    private String getCurrentMemberEmail() {
+        return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 }

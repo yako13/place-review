@@ -9,6 +9,7 @@ import newbie.place_review.dto.SignUpDto;
 import newbie.place_review.web.handler.AccountModelHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -84,5 +85,18 @@ public class AccountController {
         }
 
         return "redirect:/sign-in";
+    }
+
+    @GetMapping("/my-account/cancel")
+    public String initCancelAccount() {
+        return "pages/account/cancel-account";
+    }
+
+    @DeleteMapping("/my-account/cancel")
+    public String processCancelAccount() {
+
+        ApiResponse<Void> apiResponse = memberAccountApi.cancelAccount();
+
+        return "redirect:/sign-up";
     }
 }
