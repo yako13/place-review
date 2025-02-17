@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <th:block th:replace="fragments/blocks/global-head-block::global-head-block"></th:block>
+    <title>Server Error</title>
+</head>
+<body>
+<header th:replace="~{fragments/global-header::globalHeader}"></header>
+<main class="my-5">
+    <section class="d-flex justify-content-center align-items-center">
+        <h1>현재 서버에 문제가 발생했습니다. 잠시 후 다시 시도해주세요</h1>
+    </section>
+</main>
+<footer th:replace="~{fragments/global-footer::globalFooter}"></footer>
+</body>
+</html>
