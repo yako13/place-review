@@ -9,9 +9,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import javax.swing.text.html.Option;
 import java.util.Optional;
 
+/**
+ * @author oneachoice
+ */
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -35,7 +37,7 @@ public class MemberModuleImpl implements MemberModule {
     }
 
     @Override
-    public void deleteById(Long memberId) {
+    public void deleteById(Long memberId) throws DataRetrievalFailureException {
         Assert.notNull(memberId, "MemberId cannot be null");
 
         memberRepository.findById(memberId)
@@ -46,7 +48,7 @@ public class MemberModuleImpl implements MemberModule {
     }
 
     @Override
-    public void deleteByEmail(String memberEmail) {
+    public void deleteByEmail(String memberEmail) throws DataRetrievalFailureException {
         Assert.notNull(memberEmail, "MemberEmail cannot be null");
 
         memberRepository.findByEmail(memberEmail)
@@ -57,7 +59,7 @@ public class MemberModuleImpl implements MemberModule {
     }
 
     @Override
-    public Member update(Long memberId, String nickname, String email, String password) {
+    public Member update(Long memberId, String nickname, String email, String password) throws DataRetrievalFailureException {
         Assert.notNull(memberId, "MemberId cannot be null");
         Assert.notNull(email, "Email cannot be null");
         Assert.notNull(nickname, "Nickname cannot be null");

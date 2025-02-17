@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import newbie.place_review.cache.CacheManager;
 import newbie.place_review.dto.MemberDto;
 import newbie.place_review.module.member.MemberModule;
-import newbie.place_review.module.member.impl.MemberModuleImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
