@@ -23,16 +23,4 @@ public class VerificationController {
 
         return ResponseEntity.status(apiResponse.getHttpStatus()).body(apiResponse);
     }
-
-    @PostMapping("/verification/email/check")
-    public ResponseEntity<ApiResponse<Boolean>> checkEmailVerification(@RequestBody EmailVerificationDto emailVerificationDto) {
-
-        String email = emailVerificationDto.getEmail();
-        String verificationCode = emailVerificationDto.getVerificationCode();
-
-        ApiResponse<Boolean> apiResponse = verificationApi.checkEmailVerificationCode(email, verificationCode);
-
-        return ResponseEntity.status(apiResponse.getHttpStatus()).body(apiResponse);
-    }
-
 }

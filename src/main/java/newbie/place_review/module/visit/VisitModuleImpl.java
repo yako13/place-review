@@ -1,18 +1,13 @@
-package newbie.place_review.module.visit.impl;
+package newbie.place_review.module.visit;
 
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import newbie.place_review.module.place.Place;
-import newbie.place_review.module.visit.Visit;
-import newbie.place_review.module.visit.VisitModule;
-import newbie.place_review.module.visit.VisitRepository;
 import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service

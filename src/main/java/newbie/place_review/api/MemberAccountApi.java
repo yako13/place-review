@@ -2,9 +2,9 @@ package newbie.place_review.api;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import newbie.place_review.cache.CacheManager;
 import newbie.place_review.dto.MemberDto;
 import newbie.place_review.module.member.MemberModule;
+import newbie.place_review.module.verification.EmailVerificationModuleImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,16 +15,16 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class MemberAccountApi {
 
+    private final EmailVerificationModuleImpl emailVerificationModule;
+
     private final PasswordEncoder passwordEncoder;
 
     private final MemberModule memberModule;
 
-    private final CacheManager cacheManager;
+    public ApiResponse<Void> signUp(String nickname, String email, String password, String verificationCode) {
 
-    public ApiResponse<Void> signUp(String nickname, String email, String password) {
-
-        if (!isVerifiedEmail(email)) {
-            return ApiResponse.of("인증되지 않은 이메일입니다.", HttpStatus.BAD_REQUEST);
+        if (!emailVerificationModule.checkEmailVerification(email, verificationCode)) {
+            return ApiResponse.of("이메일 인증코드가 일치하지 않습니다.", HttpStatus.BAD_REQUEST);
         }
 
         memberModule.save(email, passwordEncoder.encode(password), nickname);
@@ -32,21 +32,18 @@ public class MemberAccountApi {
         return ApiResponse.of("회원가입 성공", HttpStatus.CREATED);
     }
 
-    public ApiResponse<Void> modifyAccount(String nickname, String email, String password) {
+    public ApiResponse<Void> modifyAccount(String nickname, String email, String password, String verificationCode) {
+
+        if (!emailVerificationModule.checkEmailVerification(email, verificationCode)) {
+            return ApiResponse.of("이메일 인증코드가 일치하지 않습니다.", HttpStatus.UNAUTHORIZED);
+        }
 
         String originEmail = SecurityContextHolder.getContext().getAuthentication().getName();
 
         return memberModule.getByEmail(originEmail)
                            .map(member -> {
 
-                               if (!member.getEmail().equals(email) && isVerifiedEmail(email)) {
-                                   // 기존 이메일과 다르면서 이메일 인증이 된 상태
-                                   member.setEmail(email);
-                               } else if (!member.getEmail().equals(email) && !isVerifiedEmail(email)) {
-                                   // 기존 이메일과 다르면서 이메일 인증이 되지 않은 상태
-                                   return ApiResponse.of("인증되지 않은 이메일입니다.", HttpStatus.BAD_REQUEST);
-                               }
-
+                               member.setEmail(email);
                                member.setNickname(nickname);
                                member.setPassword(passwordEncoder.encode(password));
 
@@ -81,10 +78,6 @@ public class MemberAccountApi {
         memberModule.deleteByEmail(email);
 
         return ApiResponse.of("계정을 성공적으로 삭제하였습니다.", HttpStatus.NO_CONTENT);
-    }
-
-    private boolean isVerifiedEmail(String email) {
-        return cacheManager.get("!" + email) != null;
     }
 
     private String getCurrentMemberEmail() {

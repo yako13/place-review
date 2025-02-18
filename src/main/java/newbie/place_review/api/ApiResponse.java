@@ -1,7 +1,6 @@
 package newbie.place_review.api;
 
 import lombok.Getter;
-import lombok.NonNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 

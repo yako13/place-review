@@ -1,11 +1,7 @@
-package newbie.place_review.module.comment.impl;
+package newbie.place_review.module.comment;
 
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import newbie.place_review.module.comment.CommentModule;
-import newbie.place_review.module.comment.CommentRepository;
-import newbie.place_review.module.comment.Comments;
 import newbie.place_review.module.review.Review;
 import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.stereotype.Service;

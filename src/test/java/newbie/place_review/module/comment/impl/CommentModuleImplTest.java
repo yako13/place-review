@@ -1,5 +1,6 @@
 package newbie.place_review.module.comment.impl;
 
+import newbie.place_review.module.comment.CommentModuleImpl;
 import newbie.place_review.module.comment.CommentRepository;
 import newbie.place_review.module.comment.Comments;
 import newbie.place_review.module.review.Review;

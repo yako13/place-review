@@ -47,8 +47,9 @@ public class AccountController {
         String nickname = modifyMemberDto.getNickname();
         String email = modifyMemberDto.getEmail();
         String password = modifyMemberDto.getPassword();
+        String verificationCode = modifyMemberDto.getVerificationCode();
 
-        ApiResponse<Void> apiResponse = memberAccountApi.modifyAccount(nickname, email, password);
+        ApiResponse<Void> apiResponse = memberAccountApi.modifyAccount(nickname, email, password, verificationCode);
 
         if (apiResponse.getHttpStatus().isError()) {
             accountModelHandler.handleMyAccountView(apiResponse, redirectAttributes);
@@ -75,8 +76,9 @@ public class AccountController {
         String nickname = signUpDto.getNickname();
         String email = signUpDto.getEmail();
         String password = signUpDto.getPassword();
+        String verificationCode = signUpDto.getVerificationCode();
 
-        ApiResponse<Void> apiResponse = memberAccountApi.signUp(nickname, email, password);
+        ApiResponse<Void> apiResponse = memberAccountApi.signUp(nickname, email, password, verificationCode);
 
         accountModelHandler.handleSignUpView(apiResponse, redirectAttributes);
 

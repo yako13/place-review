@@ -2,6 +2,7 @@ package newbie.place_review.module.review.impl;
 
 import newbie.place_review.module.place.Place;
 import newbie.place_review.module.review.Review;
+import newbie.place_review.module.review.ReviewModuleImpl;
 import newbie.place_review.module.review.ReviewRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

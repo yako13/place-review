@@ -1,6 +1,7 @@
 package newbie.place_review.module.review.impl;
 
 import newbie.place_review.module.review.ReviewImage;
+import newbie.place_review.module.review.ReviewImageModuleImpl;
 import newbie.place_review.module.review.ReviewImageRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

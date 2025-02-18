@@ -1,11 +1,7 @@
-package newbie.place_review.module.review.impl;
+package newbie.place_review.module.review;
 
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import newbie.place_review.module.place.Place;
-import newbie.place_review.module.review.Review;
-import newbie.place_review.module.review.ReviewModule;
-import newbie.place_review.module.review.ReviewRepository;
 import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

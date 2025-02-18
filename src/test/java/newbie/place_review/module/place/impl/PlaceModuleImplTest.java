@@ -2,6 +2,7 @@ package newbie.place_review.module.place.impl;
 
 import newbie.place_review.module.place.Coordinates;
 import newbie.place_review.module.place.Place;
+import newbie.place_review.module.place.PlaceModuleImpl;
 import newbie.place_review.module.place.PlaceRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

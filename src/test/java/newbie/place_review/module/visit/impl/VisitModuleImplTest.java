@@ -2,6 +2,7 @@ package newbie.place_review.module.visit.impl;
 
 import newbie.place_review.module.place.Place;
 import newbie.place_review.module.visit.Visit;
+import newbie.place_review.module.visit.VisitModuleImpl;
 import newbie.place_review.module.visit.VisitRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.dao.DataRetrievalFailureException;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 import static org.mockito.Mockito.*;

@@ -14,4 +14,6 @@ public class ModifyMemberDto {
     private String nickname;
 
     private String password;
+
+    private String verificationCode;
 }
