@@ -1,16 +1,22 @@
 @import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+@import url('https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css');
 
 :root {
     /*  Colors  */
     --dark: #212121;
 
-    --grey: #b6b6b6;
-    --grey-2: #949494;
+    --grey-1: #eeeeee;
+    --grey-2: #b7b7b7;
     --grey-3: #5d5d5d;
     --grey-4: #313131;
 
-    --white: #F3F3F3;
+    --blue-1: #0099cb;
+    --blue-2: #0080ab;
+
+    --red-1: #ff8059;
+    --red-2: #ff6f42;
 
     /*  Fonts  */
     --primary-font: 'NanumSquare';
+    --secondary-font: 'NanumSquareNeo';
 }

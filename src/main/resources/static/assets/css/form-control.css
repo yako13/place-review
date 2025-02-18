@@ -1,0 +1,29 @@
+.form-item {
+
+    /*  Font  */
+    font-family: var(--primary-font), serif;
+}
+
+.form-item__label {
+    /*  Font  */
+    font-weight: 600;
+}
+
+.form_item__input {
+    /*  Size  */
+    width: 100%;
+
+    /*  Box  */
+    padding: 0.5rem;
+
+    /*  Border  */
+    border: 1px solid var(--grey-2);
+    border-radius: 4px;
+
+    /*  Outline  */
+    outline: none;
+}
+
+.form_item__input:focus {
+    border: 1px solid var(--grey-3);
+}

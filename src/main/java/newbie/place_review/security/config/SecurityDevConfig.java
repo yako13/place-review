@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.session.SessionRegistry;
@@ -54,8 +55,8 @@ public class SecurityDevConfig {
                                           .ignoringRequestMatchers("/h2-console/**") // H2 Console은 제외
         );
 
-        // HttpBasic 인증 설정
-        http.httpBasic(Customizer.withDefaults()); // 기본 값
+        // Basic 인증 사용 안함
+        http.httpBasic(AbstractHttpConfigurer::disable);
 
         // FormLogin 설정
         http.formLogin(flc -> flc.loginPage("/sign-in") // 로그인할 페이지 경로, 없으면 기본 폼 로그인 페이지 생성

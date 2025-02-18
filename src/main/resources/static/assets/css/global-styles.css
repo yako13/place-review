@@ -1,0 +1,139 @@
+.bg-grey-1 {
+    background-color: var(--grey-1);
+}
+
+.bg-white {
+    background-color: white;
+}
+
+.rounded-1 {
+    border-radius: 8px;
+}
+
+.rounded-2 {
+    border-radius: 16px;
+}
+
+.rounded-3 {
+    border-radius: 24px;
+}
+
+h1, h2, h3, h4,
+.h1, .h2, .h3, .h4 {
+    color: var(--dark);
+    font-family: var(--primary-font), serif;
+    font-weight: 600;
+}
+
+h1, .h1 {
+    font-size: 3rem;
+}
+
+h2, .h2 {
+    font-size: 2.5rem;
+}
+
+h3, .h3 {
+    font-size: 2rem;
+}
+
+h4, .h4 {
+    font-size: 1.5rem;
+}
+
+.primary-btn {
+    /* Cursor */
+    cursor: pointer;
+
+    /* Border */
+    border: none;
+    border-radius: 8px;
+
+    /* Color */
+    background-color: var(--blue-2);
+    color: white;
+
+    /* Box */
+    padding: 0.5rem 1rem;
+
+    /* Text */
+    text-wrap: nowrap;
+
+    /*  Font  */
+    font-weight: 500;
+    font-family: var(--primary-font), serif;
+}
+
+.primary-btn:hover {
+    /*  Color  */
+    background-color: var(--blue-1);
+}
+
+.secondary-btn {
+    /* Cursor */
+    cursor: pointer;
+
+    /* Border */
+    border: none;
+    border-radius: 8px;
+
+    /* Color */
+    background-color: var(--grey-1);
+    color: var(--dark);
+
+    /* Box */
+    padding: 0.5rem 1rem;
+
+    /* Text */
+    text-wrap: nowrap;
+
+    /*  Font  */
+    font-weight: 500;
+    font-family: var(--primary-font), serif;
+}
+
+.secondary-btn:hover {
+    /* Color */
+    background-color: var(--grey-2);
+}
+
+.warning-btn {
+    /* Cursor */
+    cursor: pointer;
+
+    /* Border */
+    border: none;
+    border-radius: 8px;
+
+    /* Color */
+    background-color: var(--red-1);
+    color: white;
+
+    /* Box */
+    padding: 0.5rem 1rem;
+
+    /* Text */
+    text-wrap: nowrap;
+
+    /*  Font  */
+    font-weight: 500;
+    font-family: var(--primary-font), serif;
+}
+
+.warning-btn:hover {
+    /* Color */
+    background-color: var(--red-2);
+}
+
+a.link {
+    /*  Text  */
+    text-decoration: none;
+
+    /*  Color  */
+    color: var(--blue-2);
+}
+
+a.link:hover {
+    /*  Color  */
+    color: var(--blue-1);
+}

@@ -1,45 +1,77 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <title>회원가입</title>
     <th:block th:replace="fragments/blocks/global-head-block::global-head-block"></th:block>
-    <title>Sign Up</title>
+    <link rel="stylesheet" th:href="@{/assets/css/form-control.css}">
 </head>
 <body>
 <header th:replace="~{fragments/global-header::globalHeader}"></header>
-<main>
+<main class="bg-grey-1 py-3">
     <div th:if="${errorMessage}">
         <h3 th:text="${errorMessage}"></h3>
     </div>
-    <form th:action="@{/sign-up}" th:method="post">
-        <h2>회원가입</h2>
-        <div>
-            <label for="nickname">닉네임</label>
-            <input type="text" name="nickname" id="nickname" placeholder="닉네임"/>
-        </div>
-        <div>
-            <div>
-                <label for="email">이메일</label>
-                <input type="email" name="email" id="email">
-                <button id="email-verification-btn" type="button">인증</button>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-10 col-sm-10 col-md-8 col-lg-6 col-xl-4 bg-white rounded-1 p-3">
+                <form th:action="@{/sign-up}" th:method="post">
+                    <div class="row form-item my-3">
+                        <div class="mb-2">
+                            <label for="nickname" class="form-item__label">닉네임</label>
+                        </div>
+                        <div>
+                            <input type="text" name="nickname" id="nickname" placeholder="닉네임"
+                                   class="form_item__input"/>
+                        </div>
+                    </div>
+                    <div class="row form-item my-3">
+                        <div>
+                            <div class="mb-2">
+                                <label for="email" class="form-item__label">이메일</label>
+                            </div>
+                            <div class="d-flex">
+                                <input type="email" name="email" id="email" class="form_item__input"/>
+                                <button id="email-verification-btn" type="button" class="ms-2 primary-btn">인증</button>
+                            </div>
+                        </div>
+                        <div id="email-verification-code-con" hidden="hidden" class="mt-3">
+                            <div class="mb-2">
+                                <label for="email-verification-code" class="form-item__label">인증번호</label>
+                            </div>
+                            <div class="d-flex">
+                                <input type="text" id="email-verification-code" placeholder="인증번호 입력"
+                                       class="form_item__input"/>
+                                <button id="email-verification-code-btn" type="button" class="ms-2 primary-btn">확인
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-item my-3">
+                        <div class="mb-2">
+                            <label for="password" class="form-item__label">비밀번호</label>
+                        </div>
+                        <div>
+                            <input type="password" name="password" id="password" placeholder="비밀번호"
+                                   class="form_item__input"/>
+                        </div>
+                    </div>
+                    <div class="row form-item my-3">
+                        <div class="mb-2">
+                            <label for="password__check" class="form-item__label">비밀번호 확인</label>
+                        </div>
+                        <div>
+                            <input type="password" id="password__check" placeholder="비밀번호 확인" class="form_item__input">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="primary-btn">가입하기</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div id="email-verification-code-con" hidden="hidden">
-                <label for="email-verification-code">인증번호</label>
-                <input type="text" id="email-verification-code" placeholder="인증번호 입력">
-                <button id="email-verification-code-btn" type="button">확인</button>
-            </div>
         </div>
-        <div>
-            <label for="password">비밀번호</label>
-            <input type="password" name="password" id="password" placeholder="비밀번호"/>
-        </div>
-        <div>
-            <label for="password__check">비밀번호 확인</label>
-            <input type="password" id="password__check" placeholder="비밀번호 확인">
-        </div>
-        <div>
-            <button type="submit">가입하기</button>
-        </div>
-    </form>
+    </div>
 </main>
 <footer th:replace="~{fragments/global-footer::globalFooter}"></footer>
 <script th:src="@{/assets/js/email-verification.js}"></script>

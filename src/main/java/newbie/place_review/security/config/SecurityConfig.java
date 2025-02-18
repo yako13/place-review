@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
@@ -43,6 +44,7 @@ public class SecurityConfig {
                                                      .requestMatchers("/sign-in/**", "/sign-up/**").permitAll()
                                                      .requestMatchers("/api/v1/**").permitAll()
                                                      .requestMatchers("/assets/**").permitAll()
+                                                     .requestMatchers("/error").permitAll()
                                                      .anyRequest().authenticated()
         );
 
@@ -52,7 +54,8 @@ public class SecurityConfig {
                                           .ignoringRequestMatchers("/api/v1/**")
         );
 
-        http.httpBasic(Customizer.withDefaults());
+        // Basic 인증 사용 안함
+        http.httpBasic(AbstractHttpConfigurer::disable);
 
         http.formLogin(flc -> flc.loginPage("/sign-in")
                                  .usernameParameter("email")
