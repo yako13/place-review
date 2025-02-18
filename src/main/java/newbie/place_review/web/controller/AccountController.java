@@ -3,6 +3,7 @@ package newbie.place_review.web.controller;
 import lombok.RequiredArgsConstructor;
 import newbie.place_review.api.ApiResponse;
 import newbie.place_review.api.MemberAccountApi;
+import newbie.place_review.dto.FindAccountDto;
 import newbie.place_review.dto.MemberDto;
 import newbie.place_review.dto.ModifyMemberDto;
 import newbie.place_review.dto.SignUpDto;
@@ -22,9 +23,24 @@ public class AccountController {
 
     private final AccountModelHandler accountModelHandler;
 
-    @GetMapping("/find/password")
-    public String initFindPassword() {
-        return "pages/account/find-password";
+    @GetMapping("/find/account")
+    public String initFindAccount() {
+        return "pages/account/find-account";
+    }
+
+    @PostMapping("/find/account")
+    public String processFindAccount(FindAccountDto findAccountDto, RedirectAttributes redirectAttributes) {
+
+        String email = findAccountDto.getEmail();
+        String verificationCode = findAccountDto.getVerificationCode();
+
+        ApiResponse<Void> apiResponse = memberAccountApi.initializePassword(email, verificationCode);
+
+        if (apiResponse.getHttpStatus().isError()) {
+            return "redirect:/find/account";
+        }
+
+        return "redirect:/sign-in";
     }
 
     @GetMapping("/my-account")

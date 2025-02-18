@@ -1,5 +1,7 @@
 package newbie.place_review.module.verification;
 
+import jakarta.mail.MessagingException;
+import newbie.place_review.module.mail.MailModuleImpl;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
@@ -10,20 +12,32 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class EmailVerificationModuleImpl {
 
+    private final Random random = new Random();
+
     private final ValueOperations<String, Object> valueOperations;
 
-    public EmailVerificationModuleImpl(RedisTemplate<String, Object> redisTemplate) {
+    private final MailModuleImpl mailModule;
+
+    public EmailVerificationModuleImpl(RedisTemplate<String, Object> redisTemplate, MailModuleImpl mailModule) {
         valueOperations = redisTemplate.opsForValue();
+        this.mailModule = mailModule;
     }
 
-    public String issueVerificationCodeByEmail(String email) {
+    public void issueVerificationCodeByEmail(String email) throws MessagingException {
 
         final long EMAIL_VERIFICATION_TIMEOUT = 30;
 
         String verificationCOde = getVerificationCode();
-        valueOperations.set(email, verificationCOde, EMAIL_VERIFICATION_TIMEOUT, TimeUnit.MINUTES);
 
-        return verificationCOde;
+        String subject = "[Place Review] 이메일 인증코드";
+        String text = createVerificationCodeHtml(verificationCOde);
+
+        try {
+            mailModule.sendMimeMail(subject, text, email);
+            valueOperations.set(email, verificationCOde, EMAIL_VERIFICATION_TIMEOUT, TimeUnit.MINUTES);
+        } catch (MessagingException e) {
+            throw new MessagingException("인증코드 전송에 실패하였습니다", e);
+        }
     }
 
     public boolean checkEmailVerification(String email, String verificationCode) {
@@ -38,12 +52,21 @@ public class EmailVerificationModuleImpl {
 
 
     private String getVerificationCode() {
-        Random random = new Random();
 
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < 6; i++) {
             stringBuilder.append(random.nextInt(10));
         }
+
+        return stringBuilder.toString();
+    }
+
+    private String createVerificationCodeHtml(String verificationCode) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.append("<p>인증코드: <strong>");
+        stringBuilder.append(verificationCode);
+        stringBuilder.append("</strong></p>");
 
         return stringBuilder.toString();
     }

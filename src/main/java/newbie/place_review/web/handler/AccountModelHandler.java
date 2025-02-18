@@ -33,4 +33,10 @@ public class AccountModelHandler {
             redirectAttributes.addFlashAttribute("errorMessage", apiResponse.getMessage());
         }
     }
+
+    public void handleFindAccountView(ApiResponse<Void> apiResponse, RedirectAttributes redirectAttributes) {
+        if (apiResponse.getHttpStatus().isError()) {
+            redirectAttributes.addFlashAttribute("errorMessage", apiResponse.getMessage());
+        }
+    }
 }
